@@ -27,6 +27,8 @@ signal clk : std_logic := '0';
 -- signal enable : std_logic := '1';
 signal reset : std_logic := '0';
 signal incdec : std_logic := '0';
+
+-- also showing u value
 signal o : std_logic_vector(WIDTH-1 downto 0) := (others => '0');
 
 

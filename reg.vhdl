@@ -17,6 +17,7 @@ end reg;
 architecture behav of reg is
 
         signal reg_value : std_logic_vector(WIDTH-1 downto 0) := (others => '0'); -- internal signal to hold register value
+        
 begin
         --process for rising-edge triggering
         process(clock)

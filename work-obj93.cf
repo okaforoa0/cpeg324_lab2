@@ -1,16 +1,16 @@
 v 4
-file . "counter_adder.vhdl" "591149b5cfe32f79b276f5abca8a827350629e27" "20250331202553.384":
-  entity counter_adder at 1( 0) + 0 on 25;
-  architecture structural of counter_adder at 17( 336) + 0 on 26;
-file . "counter.vhdl" "7091ffff12e513b0bcc206d3f6de0eba425b5b11" "20250331202338.232":
-  entity counter at 1( 0) + 0 on 21;
-  architecture structural of counter at 17( 269) + 0 on 22;
-file . "reg_tb.vhdl" "2cc7bacc5f57a82651fbeabc68d37b1482d3a867" "20250331202019.856":
-  entity reg_tb at 1( 0) + 0 on 17;
-  architecture behav of reg_tb at 7( 102) + 0 on 18;
-file . "reg.vhdl" "237f181ba2dad52e16ad7e4621d9864b58fab266" "20250331202156.679":
-  entity reg at 1( 0) + 0 on 19;
-  architecture behav of reg at 17( 423) + 0 on 20;
-file . "counter_tb.vhdl" "c8b352dda51fe08dcb5944b0d1f4ba61454a8504" "20250331202343.833":
-  entity counter_tb at 1( 0) + 0 on 23;
-  architecture behav of counter_tb at 8( 111) + 0 on 24;
+file . "counter_tb.vhdl" "6eb10d055d47c818afea0836bdae007a74be86dc" "20250331220715.837":
+  entity counter_tb at 1( 0) + 0 on 43;
+  architecture behav of counter_tb at 8( 111) + 0 on 44;
+file . "reg.vhdl" "8775271e8f454503d0228bad9856059cf91eb708" "20250331220607.115":
+  entity reg at 1( 0) + 0 on 35;
+  architecture behav of reg at 17( 423) + 0 on 36;
+file . "reg_tb.vhdl" "2cc7bacc5f57a82651fbeabc68d37b1482d3a867" "20250331220612.047":
+  entity reg_tb at 1( 0) + 0 on 37;
+  architecture behav of reg_tb at 7( 102) + 0 on 38;
+file . "counter.vhdl" "25c47d4436baa0f9ff076705157799b6f79ea33a" "20250331220710.171":
+  entity counter at 1( 0) + 0 on 41;
+  architecture structural of counter at 17( 269) + 0 on 42;
+file . "counter_adder.vhdl" "591149b5cfe32f79b276f5abca8a827350629e27" "20250331220705.009":
+  entity counter_adder at 1( 0) + 0 on 39;
+  architecture structural of counter_adder at 17( 336) + 0 on 40;
