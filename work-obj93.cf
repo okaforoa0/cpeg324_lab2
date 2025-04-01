@@ -1,19 +1,31 @@
 v 4
-file . "counter_adder_tb.vhdl" "98f94df952328abcd9286f285ba641591638c33a" "20250401051958.103":
-  entity counter_adder_tb at 1( 0) + 0 on 127;
-  architecture behav of counter_adder_tb at 7( 95) + 0 on 128;
-file . "counter_tb.vhdl" "17e5b2b7eeec67aa7b3973279389a452df0b15b8" "20250401052024.069":
-  entity counter_tb at 1( 0) + 0 on 131;
-  architecture behav of counter_tb at 8( 111) + 0 on 132;
-file . "reg.vhdl" "8775271e8f454503d0228bad9856059cf91eb708" "20250401051933.806":
-  entity reg at 1( 0) + 0 on 121;
-  architecture behav of reg at 17( 423) + 0 on 122;
-file . "reg_tb.vhdl" "2cc7bacc5f57a82651fbeabc68d37b1482d3a867" "20250401051936.759":
-  entity reg_tb at 1( 0) + 0 on 123;
-  architecture behav of reg_tb at 7( 102) + 0 on 124;
-file . "counter.vhdl" "080259001d9c55bbd175353bc80f17bc89e5ad98" "20250401052015.392":
-  entity counter at 1( 0) + 0 on 129;
-  architecture structural of counter at 17( 269) + 0 on 130;
+file . "eight_4bit_tb.vhdl" "806ec52270351d5f226ddff2bca4a8207bc2e7e1" "20250401075356.559":
+  entity eight_4bit_tb at 1( 0) + 0 on 145;
+  architecture behave of eight_4bit_tb at 7( 90) + 0 on 146;
+file . "eight_4bit.vhdl" "6c6766b2522bf871e33c83ae737c1945c2e9df68" "20250401074728.310":
+  entity eight_4bit at 1( 0) + 0 on 143;
+  architecture structural of eight_4bit at 14( 306) + 0 on 144;
+file . "demux_1to8.vhdl" "1bd6b940039c72817c3699ff3151312c3ce0a4f4" "20250401071923.433":
+  entity demux_1to8 at 1( 0) + 0 on 137;
+  architecture behave of demux_1to8 at 12( 263) + 0 on 138;
 file . "counter_adder.vhdl" "e67aa49d050e14fb0f38b1d81a4b16a92cf7f366" "20250401051952.486":
   entity counter_adder at 1( 0) + 0 on 125;
   architecture structural of counter_adder at 17( 336) + 0 on 126;
+file . "counter.vhdl" "080259001d9c55bbd175353bc80f17bc89e5ad98" "20250401052015.392":
+  entity counter at 1( 0) + 0 on 129;
+  architecture structural of counter at 17( 269) + 0 on 130;
+file . "reg_tb.vhdl" "2cc7bacc5f57a82651fbeabc68d37b1482d3a867" "20250401051936.759":
+  entity reg_tb at 1( 0) + 0 on 123;
+  architecture behav of reg_tb at 7( 102) + 0 on 124;
+file . "reg.vhdl" "8775271e8f454503d0228bad9856059cf91eb708" "20250401051933.806":
+  entity reg at 1( 0) + 0 on 121;
+  architecture behav of reg at 17( 423) + 0 on 122;
+file . "counter_tb.vhdl" "17e5b2b7eeec67aa7b3973279389a452df0b15b8" "20250401052024.069":
+  entity counter_tb at 1( 0) + 0 on 131;
+  architecture behav of counter_tb at 8( 111) + 0 on 132;
+file . "counter_adder_tb.vhdl" "98f94df952328abcd9286f285ba641591638c33a" "20250401051958.103":
+  entity counter_adder_tb at 1( 0) + 0 on 127;
+  architecture behav of counter_adder_tb at 7( 95) + 0 on 128;
+file . "mux_8to1.vhdl" "7530b6c54e6f4b718875c87957c02de9a8f0cdd9" "20250401072214.762":
+  entity mux_8to1 at 1( 0) + 0 on 139;
+  architecture behave of mux_8to1 at 13( 288) + 0 on 140;
