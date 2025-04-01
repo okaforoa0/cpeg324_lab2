@@ -4,112 +4,86 @@ use ieee.std_logic_1164.all;
 entity eight_4bit_tb is 
 end eight_4bit_tb; 
 
-architecture behave of eight_4bit_tb is
+architecture test of eight_4bit_tb is
 
     component eight_4bit
-        generic (WIDTH : integer := 4);
+        generic (WIDTH : natural := 4);
         port (  
-                clk, enable : in std_logic;
-                sel : in std_logic_vector(2 downto 0);	
-                d : in std_logic_vector (WIDTH-1 downto 0);
-                q : out std_logic_vector (WIDTH-1 downto 0)
-            );
+            clk       : in STD_LOGIC;
+            -- reset     : in STD_LOGIC;
+            enable    : in STD_LOGIC_VECTOR(7 downto 0);  -- Enable for each register
+            address   : in STD_LOGIC_VECTOR(2 downto 0);  -- 3-bit address for selecting register
+            data_in   : in STD_LOGIC_VECTOR(WIDTH-1 downto 0);  -- Data input for selected register
+            data_out  : out STD_LOGIC_VECTOR(WIDTH-1 downto 0)  -- Data output from selected register
+        );
     end component;
 
+--signals 
 
-constant width : integer := 4;
+    signal clk       : STD_LOGIC := '0';
+    -- signal reset     : STD_LOGIC := '0';
+    signal enable    : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
+    signal address   : STD_LOGIC_VECTOR(2 downto 0) := (others => '0');
+    signal data_in   : STD_LOGIC_VECTOR(3 downto 0) := (others => '0');  -- Adjust this for WIDTH
+    signal data_out  : STD_LOGIC_VECTOR(3 downto 0);  -- Adjust this for WIDTH
 
---begin
---generic width : integer :=4;
-
-
--- Signals for the testbench
-signal clk, enable : std_logic := '0';
-signal sel : std_logic_vector(2 downto 0);
-signal d, q : std_logic_vector(WIDTH-1 downto 0);
-signal I : std_logic_vector(WIDTH-1 downto 0);
-signal O : std_logic_vector(WIDTH-1 downto 0); -- Add signals for I and O
+    -- Clock process definitions
+    clk_process: process
+    begin
+        clk <= '0';
+        wait for 10 ns;
+        clk <= '1';
+        wait for 10 ns;
+    end process;
 
 begin
--- Instantiate the eight_4bit component which uses reg internally
-eight4_bit: eight_4bit
-port map (
-    clk    => clk,
-    enable => enable,
-    sel    => sel,
-    d      => d,
-    q      => q
-);
+    uut: eight_4bit generic map (
+        WIDTH => 4
+    )
+    port map (
+        clk => clk,
+       -- reset => reset,
+        enable => enable,
+        address => address,
+        data_in => data_in,
+        data_out => data_out
+    );
 
-clk <= not clk after 5 ns;
+    stim_proc: process
+    begin
+        -- Reset the register file
+        --reset <= '1';
+        wait for 40 ns;
+        --reset <= '0';
+        --wait for 40 ns;
 
--- Stimulus process
-process
-    type pattern_type is record
--- The inputs of the reg.
-    --clock, 
-    enable: std_logic;
-    I: std_logic_vector(WIDTH-1 downto 0);
-    sel : std_logic_vector(2 downto 0);
-    --d, q : std_logic_vector(3 downto 0);
-    d: std_logic_vector(WIDTH-1 downto 0);
--- The expected outputs of the reg.
-    o: std_logic_vector(WIDTH-1 downto 0);
-end record;
+        -- Test writing and reading from each register
+        for i in 0 to 7 loop
+            -- Set address and enable line for current register
+            address <= std_logic_vector(to_unsigned(i, address'length));
+            enable <= (others => '0');
+            enable(i) <= '1';  -- Enable only the current register
+            
+            -- Test data pattern for current register
+            data_in <= std_logic_vector(to_unsigned(i, data_in'length));
+            
+            -- Wait two clock cycles between operations
+            wait for 40 ns;
 
-type pattern_array is array (natural range <>) of pattern_type;
-constant patterns : pattern_array := 
-        (('1', "0000", "000", "0001", "0000"),
-        ('1', "0000", "000", "0001", "0000"),
-        ('0', "0000", "000", "0001", "0001"),
-        ('1', "0000", "001", "0010", "0000"),
-        ('0', "0001", "001", "0010", "0010"),
-        ('1', "0010", "010", "0011", "0000"),
-        ('0', "0010", "010", "0011", "0011"),
-        ('1', "0011", "011", "0100", "0000"),
-        ('0', "0011", "011", "0100", "0100"),
-        ('1', "0100", "100", "0101", "0000"),
-        ('0', "0100", "100", "0101", "0101"),
-        ('1', "0101", "101", "0110", "0000"),
-        ('0', "0101", "101", "0110", "0110"),
-        ('1', "0110", "110", "0111", "0000"),
-        ('0', "0110", "110", "0111", "0111"),
-        ('1', "0111", "111", "1000", "0000"),
-        ('0', "0111", "111", "1000", "1000"),
-        ('0', "0000", "000", "0000", "0001"),
-        ('0', "0001", "000", "0000", "0010"),
-        ('0', "0010", "000", "0000", "0011"),
-        ('0', "0011", "000", "0000", "0100"),
-        ('0', "0100", "000", "0000", "0101"),
-        ('0', "0101", "000", "0000", "0110"),
-        ('0', "0110", "000", "0000", "0111"),
-        ('0', "0111", "000", "0000", "1000")
-      );
+            -- Check that the correct register has been written to
+            assert data_out = std_logic_vector(to_unsigned(i, data_out'length))
+            report "Register write test failed for register at address " & integer'image(i) severity error;
 
--- Iterate through the patterns
-begin
--- Check each pattern
-for n in patterns'range loop
-    -- Set the inputs
-    I <= patterns(n).I;
-    sel <= patterns(n).sel;
-    enable <= patterns(n).enable;
-    d <= patterns(n).d;
+            -- Disable writing for the next test
+            enable <= (others => '0');
+            
+            -- Wait two clock cycles before the next test
+            wait for 40 ns;
+        end loop;
 
-    -- I <= d;
-    O <= q;
+        -- Test is complete
+        report "End of Register File testbench simulation" severity note;
+        wait;  -- Terminate the simulation
+    end process;
 
-    -- Wait for the results
-    wait for 5 ns;
-    -- Check the outputs
-    assert q = patterns(n).o
-        report "bad q" severity error;
-end loop;
-
--- End of test
-assert false report "end of test" severity note;
--- Wait forever; this will finish the simulation
-wait;
-end process;
-
-end behave;
+end test;

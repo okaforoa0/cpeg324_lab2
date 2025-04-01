@@ -4,14 +4,21 @@ use ieee.std_logic_1164.all;
 entity eight_4bit is
 	generic (WIDTH : natural := 4);
 	port (  
-		clk, enable : in std_logic;
-		sel : in std_logic_vector(2 downto 0);	
-		d : in std_logic_vector (WIDTH-1 downto 0);
-		q : out std_logic_vector (WIDTH-1 downto 0)
+		clk       : in  STD_LOGIC;
+       -- reset     : in  STD_LOGIC;  -- Not used in this example, but you can add reset logic in your register if needed
+        enable    : in  STD_LOGIC_VECTOR(7 downto 0); -- One enable per register
+        address   : in  STD_LOGIC_VECTOR(2 downto 0); -- 3-bit address to select which register's output is read
+        data_in   : in  STD_LOGIC_VECTOR(WIDTH-1 downto 0); -- Data input for selected register
+        data_out  : out STD_LOGIC_VECTOR(WIDTH-1 downto 0)  -- Data output from selected register
 	);
 end entity eight_4bit;
 
-architecture structural of eight_4bit is
+architecture behavioral of eight_4bit is
+
+-- Define an array type to hold the output of each register.
+type reg_array is array (0 to 7) of STD_LOGIC_VECTOR(WIDTH-1 downto 0);
+signal registers : reg_array := (others => (others => '0'));
+
 
 -- Register Component
 component reg is
@@ -26,50 +33,24 @@ component reg is
 	);
 end component;
 
-component demux_1to8 is
-	port (
-		enable: in std_logic;
-		sel: in std_logic_vector(2 downto 0);
-		output_enable: out std_logic_vector(7 downto 0)
-	);
-end component; 
-
-component mux_8to1 is
-	port (
-		input_vector: in std_logic_vector(31 downto 0);
-		sel: in std_logic_vector(2 downto 0);
-		o: out std_logic_vector(WIDTH-1 downto 0)
-	);
-end component;
-
-signal enable_vector : std_logic_vector(7 downto 0) := (others => '0');
-signal output_vector : std_logic_vector(31 downto 0) := (others => '0');
-signal output_final : std_logic_vector(3 downto 0):= (others => '0');
+--internal sig for mux
+signal selected_data_out : std_logic_vector(3 downto 0);
 
 begin
-	-- Demux: Enables only the selected register
-	demux : demux_1to8 port map (enable => enable, sel => sel, output_enable => enable_vector);
+	selected_data_out <= registers(to_integer(unsigned(address)));
+	gen_registers: for i in 0 to 7 generate
+		reg_inst: reg
+		generic map (
+			WIDTH => WIDTH
+		)
+		port map (
+			I => data_in,
+			clock => clk,
+			enable => enable(i),
+			O => registers(i)
+		);
+	end generate gen_registers;	
 
-	-- Mux: Selects the output from one of the 8 registers
-	mux : mux_8to1 port map (input_vector => output_vector, sel => sel, o => output_final);
-
-	-- 8 Registers Instantiation
-	reg_1: reg port map (I => d, clock => clk, enable => enable_vector(0), O => output_vector(WIDTH-1 downto 0));
-    reg_2: reg port map (I => d, clock => clk, enable => enable_vector(1), O => output_vector(2*WIDTH-1 downto WIDTH));
-    reg_3: reg port map (I => d, clock => clk, enable => enable_vector(2), O => output_vector(3*WIDTH-1 downto 2*WIDTH));
-    reg_4: reg port map (I => d, clock => clk, enable => enable_vector(3), O => output_vector(4*WIDTH-1 downto 3*WIDTH));
-    reg_5: reg port map (I => d, clock => clk, enable => enable_vector(4), O => output_vector(5*WIDTH-1 downto 4*WIDTH));
-    reg_6: reg port map (I => d, clock => clk, enable => enable_vector(5), O => output_vector(6*WIDTH-1 downto 5*WIDTH));
-    reg_7: reg port map (I => d, clock => clk, enable => enable_vector(6), O => output_vector(7*WIDTH-1 downto 6*WIDTH));
-    reg_8: reg port map (I => d, clock => clk, enable => enable_vector(7), O => output_vector(8*WIDTH-1 downto 7*WIDTH));
-
-	--reg_1: reg port map (I => d, clock => clk, enable => enable_vector(0), O => output_vector(3 downto 0));
-	--reg_2: reg port map (I => d, clock => clk, enable => enable_vector(1), O => output_vector(7 downto 4));
-	--reg_3: reg port map (I => d, clock => clk, enable => enable_vector(2), O => output_vector(11 downto 8));
-	--reg_4: reg port map (I => d, clock => clk, enable => enable_vector(3), O => output_vector(15 downto 12));
-	--reg_5: reg port map (I => d, clock => clk, enable => enable_vector(4), O => output_vector(19 downto 16));
-	--reg_6: reg port map (I => d, clock => clk, enable => enable_vector(5), O => output_vector(23 downto 20));
-	--reg_7: reg port map (I => d, clock => clk, enable => enable_vector(6), O => output_vector(27 downto 24));
-	--reg_8: reg port map (I => d, clock => clk, enable => enable_vector(7), O => output_vector(31 downto 28));
-
-end architecture structural;
+-- mux : use 3 bit address to select one reg output
+	data_out <= selected_data_out;	
+end behavioral;
