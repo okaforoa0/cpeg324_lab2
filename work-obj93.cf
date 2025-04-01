@@ -1,19 +1,19 @@
 v 4
-file . "counter_adder_tb.vhdl" "98f94df952328abcd9286f285ba641591638c33a" "20250401033408.215":
-  entity counter_adder_tb at 1( 0) + 0 on 71;
-  architecture behav of counter_adder_tb at 7( 95) + 0 on 72;
-file . "counter_tb.vhdl" "de9f4fe43f62169cf28d826e2a6730ab4c881a63" "20250401050256.851":
-  entity counter_tb at 1( 0) + 0 on 119;
-  architecture behav of counter_tb at 8( 111) + 0 on 120;
-file . "reg.vhdl" "8775271e8f454503d0228bad9856059cf91eb708" "20250401014751.131":
-  entity reg at 1( 0) + 0 on 49;
-  architecture behav of reg at 17( 423) + 0 on 50;
-file . "reg_tb.vhdl" "2cc7bacc5f57a82651fbeabc68d37b1482d3a867" "20250401014756.530":
-  entity reg_tb at 1( 0) + 0 on 51;
-  architecture behav of reg_tb at 7( 102) + 0 on 52;
-file . "counter.vhdl" "080259001d9c55bbd175353bc80f17bc89e5ad98" "20250401050137.141":
-  entity counter at 1( 0) + 0 on 111;
-  architecture structural of counter at 17( 269) + 0 on 112;
-file . "counter_adder.vhdl" "e67aa49d050e14fb0f38b1d81a4b16a92cf7f366" "20250401041026.672":
-  entity counter_adder at 1( 0) + 0 on 85;
-  architecture structural of counter_adder at 17( 336) + 0 on 86;
+file . "counter_adder_tb.vhdl" "98f94df952328abcd9286f285ba641591638c33a" "20250401051958.103":
+  entity counter_adder_tb at 1( 0) + 0 on 127;
+  architecture behav of counter_adder_tb at 7( 95) + 0 on 128;
+file . "counter_tb.vhdl" "17e5b2b7eeec67aa7b3973279389a452df0b15b8" "20250401052024.069":
+  entity counter_tb at 1( 0) + 0 on 131;
+  architecture behav of counter_tb at 8( 111) + 0 on 132;
+file . "reg.vhdl" "8775271e8f454503d0228bad9856059cf91eb708" "20250401051933.806":
+  entity reg at 1( 0) + 0 on 121;
+  architecture behav of reg at 17( 423) + 0 on 122;
+file . "reg_tb.vhdl" "2cc7bacc5f57a82651fbeabc68d37b1482d3a867" "20250401051936.759":
+  entity reg_tb at 1( 0) + 0 on 123;
+  architecture behav of reg_tb at 7( 102) + 0 on 124;
+file . "counter.vhdl" "080259001d9c55bbd175353bc80f17bc89e5ad98" "20250401052015.392":
+  entity counter at 1( 0) + 0 on 129;
+  architecture structural of counter at 17( 269) + 0 on 130;
+file . "counter_adder.vhdl" "e67aa49d050e14fb0f38b1d81a4b16a92cf7f366" "20250401051952.486":
+  entity counter_adder at 1( 0) + 0 on 125;
+  architecture structural of counter_adder at 17( 336) + 0 on 126;
