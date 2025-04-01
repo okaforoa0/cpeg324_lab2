@@ -5,7 +5,7 @@ entity eight_4bit is
 	generic (WIDTH : natural := 4);
 	port (  
 		clk, enable : in std_logic;
-		sel : in std_logic_vector(WIDTH-1 downto 0);	
+		sel : in std_logic_vector(2 downto 0);	
 		d : in std_logic_vector (WIDTH-1 downto 0);
 		q : out std_logic_vector (WIDTH-1 downto 0)
 	);
@@ -44,13 +44,14 @@ end component;
 
 signal enable_vector : std_logic_vector(7 downto 0) := (others => '0');
 signal output_vector : std_logic_vector(31 downto 0) := (others => '0');
+signal output_final : std_logic_vector(3 downto 0):= (others => '0');
 
 begin
 	-- Demux: Enables only the selected register
 	demux : demux_1to8 port map (enable => enable, sel => sel, output_enable => enable_vector);
 
 	-- Mux: Selects the output from one of the 8 registers
-	mux : mux_8to1 port map (input_vector => output_vector, sel => sel, o => q);
+	mux : mux_8to1 port map (input_vector => output_vector, sel => sel, o => output_final);
 
 	-- 8 Registers Instantiation
 	reg_1: reg port map (I => d, clock => clk, enable => enable_vector(0), O => output_vector(WIDTH-1 downto 0));
