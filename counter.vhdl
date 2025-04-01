@@ -47,21 +47,33 @@ end component;
 -- showing u value
 signal reg_out : std_logic_vector(WIDTH-1 downto 0) := (others => '0');
 -- issue with next_val - showing U 
-signal next_val : std_logic_vector(WIDTH-1 downto 0) := (others => '0');
+signal next_val : std_logic_vector(WIDTH-1 downto 0); 
+--doesn't need the others 0
+--:= (others => '0');
 -- showing f then 0 then f 
-signal add_B : std_logic_vector(WIDTH-1 downto 0) := (others => '0');
+signal add_B : std_logic_vector(WIDTH-1 downto 0); 
+--:= (others => '0');
 signal Cin : std_logic := '0';
+signal carry_out : std_logic;
+signal mux_val : std_logic_vector(WIDTH-1 downto 0);
+
+
 
 -- implement an adder
 
 begin 
+
+-- Define adder inputs 
+
+	add_B <= (others => '0') when INCDEC = '1' else (others => '1');
+	Cin <= INCDEC;
 
 	--instantiate 4-bit register
 	register_inst : reg
 	generic map (WIDTH => WIDTH)
 	   port map(
 		-- showing u value
-		I => next_val,	-- data to load into the register
+		I => mux_val,	-- data to load into the register
 		-- works as intended
 		clock => CLOCK, -- clock input
 		-- works as intended
@@ -70,10 +82,7 @@ begin
 		O => reg_out -- 4-bit counter output
 	);
 
-	-- Define adder inputs 
-
-	 add_B <= (others => '0') when INCDEC = '1' else (others => '1');
-	 Cin <= INCDEC;
+	mux_val <=(others => '0') when RESET = '1' else next_val;
 	
 	-- instantiate adder
 	 adder_inst : counter_adder
@@ -88,22 +97,23 @@ begin
 		--showing u
 		SUM => next_val,
 		--showing u
-		Cout => open
+		Cout => carry_out
  );
-	-- next_val <= reg_out;
 	
-process (CLOCK)
+	count <= reg_out;
+
+--process (CLOCK)
 -- rework this
-    begin
-        if rising_edge(CLOCK) then
-            if RESET = '1' then
-                reg_out <= (others => '0'); -- Reset counter to 0000
-            else
-		reg_out <= next_val;
-	    end if;
-	end if;
-    end process;
-    count <= reg_out;
+  --  begin
+    --    if rising_edge(CLOCK) then
+      --      if RESET = '1' then
+        --        reg_out <= (others => '0'); -- Reset counter to 0000
+          --  else
+		--reg_out <= next_val;
+	    --end if;
+	--end if;
+    --end process;
+    --count <= reg_out;
 
 end structural;
 
