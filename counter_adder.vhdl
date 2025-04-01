@@ -16,7 +16,8 @@ end counter_adder;
 
 architecture structural of counter_adder is
 	--showing uu
-	signal carry : std_logic_vector(WIDTH downto 0);
+	-- added others 0
+	signal carry : std_logic_vector(WIDTH downto 0) := (others => '0');
 begin 
 	carry(0) <= Cin;
 

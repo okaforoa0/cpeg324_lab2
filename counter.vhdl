@@ -16,7 +16,7 @@ end counter;
 
 architecture structural of counter is
 
-	-- showing u values
+
 	component reg is
 		generic (
 			WIDTH : natural := 4
@@ -44,17 +44,11 @@ end component;
 
 -- signal to hold internal counter value
 
--- showing u value
 signal reg_out : std_logic_vector(WIDTH-1 downto 0) := (others => '0');
--- issue with next_val - showing U 
 signal next_val : std_logic_vector(WIDTH-1 downto 0); 
---doesn't need the others 0
---:= (others => '0');
--- showing f then 0 then f 
-signal add_B : std_logic_vector(WIDTH-1 downto 0); 
---:= (others => '0');
+signal add_B : std_logic_vector(WIDTH-1 downto 0) := (others => '1'); 
 signal Cin : std_logic := '0';
-signal carry_out : std_logic;
+signal carry_out : std_logic := '0';
 signal mux_val : std_logic_vector(WIDTH-1 downto 0);
 
 
@@ -72,13 +66,9 @@ begin
 	register_inst : reg
 	generic map (WIDTH => WIDTH)
 	   port map(
-		-- showing u value
 		I => mux_val,	-- data to load into the register
-		-- works as intended
 		clock => CLOCK, -- clock input
-		-- works as intended
 		enable => '1', -- enable reg for now
-		-- showing u value
 		O => reg_out -- 4-bit counter output
 	);
 

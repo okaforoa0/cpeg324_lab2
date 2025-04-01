@@ -23,7 +23,7 @@ end component;
 
 -- Specifies which entity is bound with the component.
 constant WIDTH : natural := 4;
-constant CLK_PERIOD : time := 10 ns;
+-- constant CLK_PERIOD : time := 10 ns;
 
 signal clk : std_logic := '0';
 -- signal enable : std_logic := '1';
@@ -31,8 +31,7 @@ signal reset : std_logic := '0';
 signal incdec : std_logic := '0';
 
 -- also showing u value
-signal o : std_logic_vector(WIDTH-1 downto 0);
--- := (others => '0');
+signal o : std_logic_vector(WIDTH-1 downto 0) := (others => '0');
 
 
 begin
@@ -52,8 +51,8 @@ begin
 	clk_process : process
 	begin
                clk <= not clk;
-               wait for CLK_PERIOD / 2;
-               --wait for 10 ns;	
+              -- wait for CLK_PERIOD / 2;
+               wait for 10 ns;	
 	end process;
 
 -- This process does the real job.
@@ -85,7 +84,7 @@ begin
         reset <= '1'; -- Apply reset at the start
         wait for 20 ns; -- hold reset high before first clock edge
         reset <= '0';
-        wait for 10 ns;
+        wait for 20 ns;
 
         for n in patterns'range loop
 -- Set the inputs.
