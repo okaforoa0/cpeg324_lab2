@@ -82,7 +82,7 @@ begin
 		O => reg_out -- 4-bit counter output
 	);
 
-	mux_val <=(others => '0') when RESET = '1' else next_val;
+	mux_val <= (others => '0') when RESET = '1' else next_val;
 	
 	-- instantiate adder
 	 adder_inst : counter_adder
@@ -102,6 +102,7 @@ begin
 	
 	count <= reg_out;
 
+	-- don't need another process bc is supposed to handle this
 --process (CLOCK)
 -- rework this
   --  begin

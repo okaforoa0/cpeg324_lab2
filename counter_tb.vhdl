@@ -73,10 +73,10 @@ type pattern_array is array (natural range <>) of pattern_type;
 constant patterns : pattern_array := (
        
         ('1', '0', "0000"), -- Reset is on, 0000
-        ('0', '1', "0001"), -- No reset, incr, expect 0000
+        ('0', '1', "0001"), -- No reset, incr, expect 0001
         ('0', '1', "0010"),
         ('0', '1', "0011"),
-        ('0', '0', "0010")  -- no reset, incr, expect 0000
+        ('0', '0', "0010")  -- no reset, incr, expect 0010
 );
 
 
