@@ -1,10 +1,10 @@
 v 4
-file . "eight_4bit_tb.vhdl" "7320829ed8407435e962cf0378434e7b21b9f800" "20250401080543.077":
-  entity eight_4bit_tb at 1( 0) + 0 on 157;
-  architecture behave of eight_4bit_tb at 7( 90) + 0 on 158;
-file . "eight_4bit.vhdl" "ac0a2ff9b756a5093f3b399f5ba4131086562e45" "20250401080541.041":
-  entity eight_4bit at 1( 0) + 0 on 155;
-  architecture structural of eight_4bit at 14( 300) + 0 on 156;
+file . "eight_4bit_tb.vhdl" "4b841597e5bdad2e578625fe00fa88e4d58a0d83" "20250401163410.195":
+  entity eight_4bit_tb at 1( 0) + 0 on 161;
+  architecture test of eight_4bit_tb at 8( 116) + 0 on 162;
+file . "eight_4bit.vhdl" "4890c608a3171f0f1732872093b84e6555a558db" "20250401162526.080":
+  entity eight_4bit at 1( 0) + 0 on 159;
+  architecture behavioral of eight_4bit at 17( 701) + 0 on 160;
 file . "demux_1to8.vhdl" "1bd6b940039c72817c3699ff3151312c3ce0a4f4" "20250401071923.433":
   entity demux_1to8 at 1( 0) + 0 on 137;
   architecture behave of demux_1to8 at 12( 263) + 0 on 138;

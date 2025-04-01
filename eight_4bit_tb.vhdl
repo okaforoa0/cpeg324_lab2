@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity eight_4bit_tb is 
 end eight_4bit_tb; 
@@ -19,6 +20,7 @@ architecture test of eight_4bit_tb is
     end component;
 
 --signals 
+    constant WIDTH : natural := 4;
 
     signal clk       : STD_LOGIC := '0';
     -- signal reset     : STD_LOGIC := '0';
@@ -26,6 +28,19 @@ architecture test of eight_4bit_tb is
     signal address   : STD_LOGIC_VECTOR(2 downto 0) := (others => '0');
     signal data_in   : STD_LOGIC_VECTOR(3 downto 0) := (others => '0');  -- Adjust this for WIDTH
     signal data_out  : STD_LOGIC_VECTOR(3 downto 0);  -- Adjust this for WIDTH
+
+begin
+        uut: eight_4bit generic map (
+            WIDTH => WIDTH
+        )
+        port map (
+            clk => clk,
+           -- reset => reset,
+            enable => enable,
+            address => address,
+            data_in => data_in,
+            data_out => data_out
+        );
 
     -- Clock process definitions
     clk_process: process
@@ -36,18 +51,6 @@ architecture test of eight_4bit_tb is
         wait for 10 ns;
     end process;
 
-begin
-    uut: eight_4bit generic map (
-        WIDTH => 4
-    )
-    port map (
-        clk => clk,
-       -- reset => reset,
-        enable => enable,
-        address => address,
-        data_in => data_in,
-        data_out => data_out
-    );
 
     stim_proc: process
     begin
@@ -85,5 +88,5 @@ begin
         report "End of Register File testbench simulation" severity note;
         wait;  -- Terminate the simulation
     end process;
-
 end test;
+
