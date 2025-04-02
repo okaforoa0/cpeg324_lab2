@@ -1,4 +1,7 @@
 v 4
+file . "addsub4bit_tb.vhdl" "43ec4d1128423be6f9f245302abb8fd226408b41" "20250402015649.269":
+  entity addsub4bit_tb at 1( 0) + 0 on 199;
+  architecture behavioral of addsub4bit_tb at 8( 116) + 0 on 200;
 file . "mux_8to1.vhdl" "7530b6c54e6f4b718875c87957c02de9a8f0cdd9" "20250401072214.762":
   entity mux_8to1 at 1( 0) + 0 on 139;
   architecture behave of mux_8to1 at 13( 288) + 0 on 140;
@@ -29,3 +32,9 @@ file . "eight_4bit.vhdl" "4890c608a3171f0f1732872093b84e6555a558db" "20250401162
 file . "eight_4bit_tb.vhdl" "bb14036b39dcee1f00a27f3d931c5d8ce07e27c8" "20250401165136.476":
   entity eight_4bit_tb at 1( 0) + 0 on 163;
   architecture test of eight_4bit_tb at 8( 116) + 0 on 164;
+file . "addsub4bit.vhdl" "5a5fc07ca6ede7d46127379d56c4b22b179299fa" "20250402015617.831":
+  entity addsub4bit at 1( 0) + 0 on 197;
+  architecture behav of addsub4bit at 16( 282) + 0 on 198;
+file . "full_adder.vhdl" "615a0248b46ccd2e6af10c6af99959ddd7e6f6e3" "20250402015412.003":
+  entity full_adder at 1( 0) + 0 on 193;
+  architecture behav of full_adder at 16( 205) + 0 on 194;
