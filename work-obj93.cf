@@ -8,18 +8,18 @@ file . "mux_8to1.vhdl" "7530b6c54e6f4b718875c87957c02de9a8f0cdd9" "2025040107221
 file . "counter_adder_tb.vhdl" "98f94df952328abcd9286f285ba641591638c33a" "20250401051958.103":
   entity counter_adder_tb at 1( 0) + 0 on 127;
   architecture behav of counter_adder_tb at 7( 95) + 0 on 128;
-file . "counter_tb.vhdl" "17e5b2b7eeec67aa7b3973279389a452df0b15b8" "20250401052024.069":
-  entity counter_tb at 1( 0) + 0 on 131;
-  architecture behav of counter_tb at 8( 111) + 0 on 132;
+file . "counter_tb.vhdl" "17e5b2b7eeec67aa7b3973279389a452df0b15b8" "20250402023837.185":
+  entity counter_tb at 1( 0) + 0 on 203;
+  architecture behav of counter_tb at 8( 111) + 0 on 204;
 file . "reg.vhdl" "8775271e8f454503d0228bad9856059cf91eb708" "20250401051933.806":
   entity reg at 1( 0) + 0 on 121;
   architecture behav of reg at 17( 423) + 0 on 122;
 file . "reg_tb.vhdl" "2cc7bacc5f57a82651fbeabc68d37b1482d3a867" "20250401051936.759":
   entity reg_tb at 1( 0) + 0 on 123;
   architecture behav of reg_tb at 7( 102) + 0 on 124;
-file . "counter.vhdl" "080259001d9c55bbd175353bc80f17bc89e5ad98" "20250401052015.392":
-  entity counter at 1( 0) + 0 on 129;
-  architecture structural of counter at 17( 269) + 0 on 130;
+file . "counter.vhdl" "fbfae6f256d7f9c998426efcc40176bcdff11a38" "20250402023740.158":
+  entity counter at 1( 0) + 0 on 201;
+  architecture structural of counter at 17( 269) + 0 on 202;
 file . "counter_adder.vhdl" "e67aa49d050e14fb0f38b1d81a4b16a92cf7f366" "20250401051952.486":
   entity counter_adder at 1( 0) + 0 on 125;
   architecture structural of counter_adder at 17( 336) + 0 on 126;

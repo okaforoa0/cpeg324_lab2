@@ -92,23 +92,4 @@ begin
 	
 	count <= reg_out;
 
-	-- don't need another process bc is supposed to handle this
---process (CLOCK)
--- rework this
-  --  begin
-    --    if rising_edge(CLOCK) then
-      --      if RESET = '1' then
-        --        reg_out <= (others => '0'); -- Reset counter to 0000
-          --  else
-		--reg_out <= next_val;
-	    --end if;
-	--end if;
-    --end process;
-    --count <= reg_out;
-
 end structural;
-
-
-
-
-
