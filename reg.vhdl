@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
+-- declare reg entity
 entity reg is
     generic (
         WIDTH : natural := 4 -- default 4 bits

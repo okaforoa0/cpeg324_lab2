@@ -6,7 +6,6 @@ entity eight_4bit is
 	generic (WIDTH : natural := 4);
 	port (  
 		clk       : in  STD_LOGIC;
-       -- reset     : in  STD_LOGIC;  -- Not used in this example, but you can add reset logic in your register if needed
         enable    : in  STD_LOGIC_VECTOR(7 downto 0); -- One enable per register
         address   : in  STD_LOGIC_VECTOR(2 downto 0); -- 3-bit address to select which register's output is read
         data_in   : in  STD_LOGIC_VECTOR(WIDTH-1 downto 0); -- Data input for selected register
@@ -16,12 +15,12 @@ end entity eight_4bit;
 
 architecture behavioral of eight_4bit is
 
--- Define an array type to hold the output of each register.
+-- define an array type to hold the output of each register.
 type reg_array is array (0 to 7) of STD_LOGIC_VECTOR(WIDTH-1 downto 0);
 signal registers : reg_array := (others => (others => '0'));
 
 
--- Register Component
+-- register Component
 component reg is
     generic (
         WIDTH : natural := 4
